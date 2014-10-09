@@ -23,6 +23,9 @@ RUN find "$APACHE_CONFDIR" -type f -exec sed -ri ' \
         s!^(\s*ErrorLog)\s+\S+!\1 /proc/self/fd/2!g; \
 ' '{}' ';'
 
+
+COPY docker-apache.conf /etc/apache2/sites-available/default
+
 RUN rm -rf /var/www/html && mkdir /var/www/html
 VOLUME /var/www/html
 WORKDIR /var/www/html
